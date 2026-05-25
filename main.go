@@ -1,11 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"log/slog"
 
+	"github.com/madhavan-raja/autorun/autorun"
 	"github.com/madhavan-raja/autorun/internal"
-	"github.com/madhavan-raja/autorun/internal/types"
 )
 
 var logger *slog.Logger
@@ -15,16 +14,8 @@ func init() {
 }
 
 func main() {
-	processes := []types.Process{
-		{
-			Name: "Test",
-			Description: "Test Process",
-			Cmd: "echo 'Hello World'",
-			RunOnStart: false,
-			Repeat: true,
-			Interval: 60,
-		},
-	}
+	a := autorun.New("")
+	a.LoadProcesses()
 
-	fmt.Printf("%v\n", processes)
+	a.Start()
 }

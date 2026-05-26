@@ -1,10 +1,11 @@
 package types
 
+import "github.com/robfig/cron/v3"
+
 type Process struct {
+	Id          string
 	Name        string
 	Description string
 	Cmd         string
-	RunOnStart  bool
-	Repeat      bool
-	Interval    uint64
+	CronId      cron.EntryID
 }

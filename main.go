@@ -5,11 +5,10 @@ import (
 	"fmt"
 	"log/slog"
 	"net"
-	"time"
 
-	"github.com/madhavan-raja/autorun/autorun"
 	"github.com/madhavan-raja/autorun/internal"
 	"github.com/madhavan-raja/autorun/internal/types"
+	"github.com/madhavan-raja/autorun/pb"
 	"google.golang.org/grpc"
 )
 
@@ -20,63 +19,44 @@ func init() {
 }
 
 type autorunServer struct {
-	autorun.UnimplementedAutorunServer
-	processes map[string]types.Process
+	pb.UnimplementedAutorunServer
+	autorun *types.Autorun
 }
 
-func (a *autorunServer) RunProcesses() {
-	for _, p := range a.processes {
-		go func() {
-			if p.RunOnStart {
-				logger.Info("Running Process On Start", "process", p.Name)
-			}
-
-			if p.Repeat {
-				ticker := time.NewTicker(time.Duration(p.Interval) * time.Second)
-				defer ticker.Stop()
-
-				for range ticker.C {
-					logger.Info("Running Process", "process", p.Name)
-				}
-			}
-		}()
-	}
+func (a *autorunServer) Add(ctx context.Context, req *pb.AddRequest) (*pb.AddResponse, error) {
+	logger.Info("Received Add Request", "req", req)
+	return &pb.AddResponse{}, nil
 }
 
-func (a *autorunServer) Create(ctx context.Context, req *autorun.CreateRequest) (*autorun.CreateResponse, error) {
-	logger.Info("Received", "create_request", req)
-	return &autorun.CreateResponse{}, nil
+func (a *autorunServer) Update(ctx context.Context, req *pb.UpdateRequest) (*pb.UpdateResponse, error) {
+	logger.Info("Received Update Request", "req", req)
+	return &pb.UpdateResponse{}, nil
 }
 
+func (a *autorunServer) Delete(ctx context.Context, req *pb.DeleteRequest) (*pb.DeleteResponse, error) {
+	logger.Info("Received Delete Request", "req", req)
+	return &pb.DeleteResponse{}, nil
+}
+
+func (a *autorunServer) Trigger(ctx context.Context, req *pb.TriggerRequest) (*pb.TriggerResponse, error) {
+	logger.Info("Received Trigger Request", "req", req)
+	return &pb.TriggerResponse{}, nil
+}
 
 func main() {
 	port := uint32(5678)
+
+	a := types.NewAutorun()
 
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
 	if err != nil {
 		logger.Error("Cannot create listener: %v", err)
 	}
 
-	serverRegistrar := grpc.NewServer()
+	s := grpc.NewServer()
 
-	processes := make(map[string]types.Process)
-	processes["Test"] = types.Process{
-		Name:        "Test",
-		Description: "Test Process",
-		Cmd:         "echo 'Hello World'",
-		RunOnStart:  false,
-		Repeat:      true,
-		Interval:    5,
-	}
-
-	server := &autorunServer{
-		processes: processes,
-	}
-
-	server.RunProcesses()
-
-	autorun.RegisterAutorunServer(serverRegistrar, server)
-	if err = serverRegistrar.Serve(lis); err != nil {
+	pb.RegisterAutorunServer(s, &autorunServer{autorun: a})
+	if err = s.Serve(lis); err != nil {
 		logger.Error("Cannot serve: %s", err)
 	}
 }

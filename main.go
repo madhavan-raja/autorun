@@ -6,6 +6,7 @@ import (
 	"log/slog"
 	"net"
 
+	"github.com/madhavan-raja/autorun/autorun"
 	"github.com/madhavan-raja/autorun/internal"
 	"github.com/madhavan-raja/autorun/pb"
 	"google.golang.org/grpc"
@@ -14,17 +15,23 @@ import (
 var logger *slog.Logger
 
 func init() {
-	logger = internal.Logger
+	logger = internal.Logger.WithGroup("main")
 }
 
 type autorunServer struct {
 	pb.UnimplementedAutorunServer
-	autorun *internal.Autorun
+	autorun *autorun.Autorun
 }
 
 func (a *autorunServer) Add(ctx context.Context, req *pb.AddRequest) (*pb.AddResponse, error) {
 	logger.Info("Received Add Request", "req", req)
-	return &pb.AddResponse{}, nil
+
+	id, err := a.autorun.Add(req.Name, req.Description, req.Command, req.CronSchedule)
+	if err != nil {
+		return nil, err
+	}
+
+	return &pb.AddResponse{Id: id}, nil
 }
 
 func (a *autorunServer) Update(ctx context.Context, req *pb.UpdateRequest) (*pb.UpdateResponse, error) {
@@ -45,7 +52,7 @@ func (a *autorunServer) Trigger(ctx context.Context, req *pb.TriggerRequest) (*p
 func main() {
 	port := uint32(5678)
 
-	a := internal.NewAutorun()
+	a := autorun.NewAutorun()
 
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
 	if err != nil {

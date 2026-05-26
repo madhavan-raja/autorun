@@ -11,11 +11,11 @@ message AddRequest {
 }
 
 message AddResponse {
-  string id = 1;
+  uint64 id = 1;
 }
 
 message UpdateRequest {
-  string id            = 1;
+  uint64 id            = 1;
   string name          = 2;
   string description   = 3;
   string command       = 4;
@@ -23,7 +23,7 @@ message UpdateRequest {
 }
 
 message UpdateResponse {
-  string id            = 1;
+  uint64 id            = 1;
   string name          = 2;
   string description   = 3;
   string command       = 4;
@@ -31,19 +31,19 @@ message UpdateResponse {
 }
 
 message DeleteRequest {
-  string id = 1;
+  uint64 id = 1;
 }
 
 message DeleteResponse {
-  string id = 1;
+  uint64 id = 1;
 }
 
 message TriggerRequest {
-  string id = 1;
+  uint64 id = 1;
 }
 
 message TriggerResponse {
-  string id = 1;
+  uint64 id = 1;
 }
 
 service Autorun {

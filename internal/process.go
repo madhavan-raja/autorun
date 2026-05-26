@@ -3,7 +3,7 @@ package internal
 import "github.com/robfig/cron/v3"
 
 type Process struct {
-	Id          string
+	Id          uint64
 	Name        string
 	Description string
 	Cmd         string

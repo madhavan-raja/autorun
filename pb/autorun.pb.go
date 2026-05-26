@@ -91,7 +91,7 @@ func (x *AddRequest) GetCronSchedule() string {
 
 type AddResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -126,16 +126,16 @@ func (*AddResponse) Descriptor() ([]byte, []int) {
 	return file_proto_autorun_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *AddResponse) GetId() string {
+func (x *AddResponse) GetId() uint64 {
 	if x != nil {
 		return x.Id
 	}
-	return ""
+	return 0
 }
 
 type UpdateRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 	Command       string                 `protobuf:"bytes,4,opt,name=command,proto3" json:"command,omitempty"`
@@ -174,11 +174,11 @@ func (*UpdateRequest) Descriptor() ([]byte, []int) {
 	return file_proto_autorun_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *UpdateRequest) GetId() string {
+func (x *UpdateRequest) GetId() uint64 {
 	if x != nil {
 		return x.Id
 	}
-	return ""
+	return 0
 }
 
 func (x *UpdateRequest) GetName() string {
@@ -211,7 +211,7 @@ func (x *UpdateRequest) GetCronSchedule() string {
 
 type UpdateResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 	Command       string                 `protobuf:"bytes,4,opt,name=command,proto3" json:"command,omitempty"`
@@ -250,11 +250,11 @@ func (*UpdateResponse) Descriptor() ([]byte, []int) {
 	return file_proto_autorun_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *UpdateResponse) GetId() string {
+func (x *UpdateResponse) GetId() uint64 {
 	if x != nil {
 		return x.Id
 	}
-	return ""
+	return 0
 }
 
 func (x *UpdateResponse) GetName() string {
@@ -287,7 +287,7 @@ func (x *UpdateResponse) GetCronSchedule() string {
 
 type DeleteRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -322,16 +322,16 @@ func (*DeleteRequest) Descriptor() ([]byte, []int) {
 	return file_proto_autorun_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *DeleteRequest) GetId() string {
+func (x *DeleteRequest) GetId() uint64 {
 	if x != nil {
 		return x.Id
 	}
-	return ""
+	return 0
 }
 
 type DeleteResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -366,16 +366,16 @@ func (*DeleteResponse) Descriptor() ([]byte, []int) {
 	return file_proto_autorun_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *DeleteResponse) GetId() string {
+func (x *DeleteResponse) GetId() uint64 {
 	if x != nil {
 		return x.Id
 	}
-	return ""
+	return 0
 }
 
 type TriggerRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -410,16 +410,16 @@ func (*TriggerRequest) Descriptor() ([]byte, []int) {
 	return file_proto_autorun_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *TriggerRequest) GetId() string {
+func (x *TriggerRequest) GetId() uint64 {
 	if x != nil {
 		return x.Id
 	}
-	return ""
+	return 0
 }
 
 type TriggerResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -454,11 +454,11 @@ func (*TriggerResponse) Descriptor() ([]byte, []int) {
 	return file_proto_autorun_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *TriggerResponse) GetId() string {
+func (x *TriggerResponse) GetId() uint64 {
 	if x != nil {
 		return x.Id
 	}
-	return ""
+	return 0
 }
 
 var File_proto_autorun_proto protoreflect.FileDescriptor
@@ -473,27 +473,27 @@ const file_proto_autorun_proto_rawDesc = "" +
 	"\acommand\x18\x03 \x01(\tR\acommand\x12#\n" +
 	"\rcron_schedule\x18\x04 \x01(\tR\fcronSchedule\"\x1d\n" +
 	"\vAddResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\x94\x01\n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id\"\x94\x01\n" +
 	"\rUpdateRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\x18\n" +
 	"\acommand\x18\x04 \x01(\tR\acommand\x12#\n" +
 	"\rcron_schedule\x18\x05 \x01(\tR\fcronSchedule\"\x95\x01\n" +
 	"\x0eUpdateResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\x18\n" +
 	"\acommand\x18\x04 \x01(\tR\acommand\x12#\n" +
 	"\rcron_schedule\x18\x05 \x01(\tR\fcronSchedule\"\x1f\n" +
 	"\rDeleteRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\" \n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id\" \n" +
 	"\x0eDeleteResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\" \n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id\" \n" +
 	"\x0eTriggerRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"!\n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id\"!\n" +
 	"\x0fTriggerResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id2\xef\x01\n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id2\xef\x01\n" +
 	"\aAutorun\x120\n" +
 	"\x03Add\x12\x13.autorun.AddRequest\x1a\x14.autorun.AddResponse\x129\n" +
 	"\x06Update\x12\x16.autorun.UpdateRequest\x1a\x17.autorun.UpdateResponse\x129\n" +

@@ -14,10 +14,18 @@ func init() {
 	logger = internal.Logger.WithGroup("autorun")
 }
 
+type Process struct {
+	Id          uint64
+	Name        string
+	Description string
+	Cmd         string
+	CronId      cron.EntryID
+}
+
 type Autorun struct {
 	mu sync.RWMutex
 	cron *cron.Cron
-	jobs map[uint64]*internal.Process
+	jobs map[uint64]*Process
 }
 
 func NewAutorun() *Autorun {
@@ -26,7 +34,7 @@ func NewAutorun() *Autorun {
 
 	return &Autorun {
 		cron: c,
-		jobs: make(map[uint64]*internal.Process),
+		jobs: make(map[uint64]*Process),
 	}
 }
 
@@ -45,7 +53,7 @@ func (a *Autorun) Add(name string, description string, cmd string, schedule stri
 		return 0, err
 	}
 
-	a.jobs[newId] = &internal.Process{
+	a.jobs[newId] = &Process{
 		Id: newId,
 		Name: name,
 		Description: description,

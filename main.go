@@ -21,7 +21,7 @@ func init() {
 
 type autorunServer struct {
 	autorun.UnimplementedAutorunServer
-	processes []types.Process
+	processes map[string]types.Process
 }
 
 func (a *autorunServer) RunProcesses() {
@@ -58,17 +58,19 @@ func main() {
 	}
 
 	serverRegistrar := grpc.NewServer()
+
+	processes := make(map[string]types.Process)
+	processes["Test"] = types.Process{
+		Name:        "Test",
+		Description: "Test Process",
+		Cmd:         "echo 'Hello World'",
+		RunOnStart:  false,
+		Repeat:      true,
+		Interval:    5,
+	}
+
 	server := &autorunServer{
-		processes: []types.Process{
-			{
-				Name:        "Test",
-				Description: "Test Process",
-				Cmd:         "echo 'Hello World'",
-				RunOnStart:  false,
-				Repeat:      true,
-				Interval:    5,
-			},
-		},
+		processes: processes,
 	}
 
 	server.RunProcesses()

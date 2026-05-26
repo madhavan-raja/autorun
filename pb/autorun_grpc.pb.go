@@ -19,215 +19,215 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Autorun_Add_FullMethodName     = "/autorun.Autorun/Add"
-	Autorun_Update_FullMethodName  = "/autorun.Autorun/Update"
-	Autorun_Delete_FullMethodName  = "/autorun.Autorun/Delete"
-	Autorun_Trigger_FullMethodName = "/autorun.Autorun/Trigger"
+	ArDaemon_Add_FullMethodName     = "/ardaemon.ArDaemon/Add"
+	ArDaemon_Update_FullMethodName  = "/ardaemon.ArDaemon/Update"
+	ArDaemon_Delete_FullMethodName  = "/ardaemon.ArDaemon/Delete"
+	ArDaemon_Trigger_FullMethodName = "/ardaemon.ArDaemon/Trigger"
 )
 
-// AutorunClient is the client API for Autorun service.
+// ArDaemonClient is the client API for ArDaemon service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type AutorunClient interface {
+type ArDaemonClient interface {
 	Add(ctx context.Context, in *AddRequest, opts ...grpc.CallOption) (*AddResponse, error)
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 	Trigger(ctx context.Context, in *TriggerRequest, opts ...grpc.CallOption) (*TriggerResponse, error)
 }
 
-type autorunClient struct {
+type arDaemonClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewAutorunClient(cc grpc.ClientConnInterface) AutorunClient {
-	return &autorunClient{cc}
+func NewArDaemonClient(cc grpc.ClientConnInterface) ArDaemonClient {
+	return &arDaemonClient{cc}
 }
 
-func (c *autorunClient) Add(ctx context.Context, in *AddRequest, opts ...grpc.CallOption) (*AddResponse, error) {
+func (c *arDaemonClient) Add(ctx context.Context, in *AddRequest, opts ...grpc.CallOption) (*AddResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(AddResponse)
-	err := c.cc.Invoke(ctx, Autorun_Add_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, ArDaemon_Add_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *autorunClient) Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error) {
+func (c *arDaemonClient) Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UpdateResponse)
-	err := c.cc.Invoke(ctx, Autorun_Update_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, ArDaemon_Update_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *autorunClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
+func (c *arDaemonClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DeleteResponse)
-	err := c.cc.Invoke(ctx, Autorun_Delete_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, ArDaemon_Delete_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *autorunClient) Trigger(ctx context.Context, in *TriggerRequest, opts ...grpc.CallOption) (*TriggerResponse, error) {
+func (c *arDaemonClient) Trigger(ctx context.Context, in *TriggerRequest, opts ...grpc.CallOption) (*TriggerResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(TriggerResponse)
-	err := c.cc.Invoke(ctx, Autorun_Trigger_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, ArDaemon_Trigger_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// AutorunServer is the server API for Autorun service.
-// All implementations must embed UnimplementedAutorunServer
+// ArDaemonServer is the server API for ArDaemon service.
+// All implementations must embed UnimplementedArDaemonServer
 // for forward compatibility.
-type AutorunServer interface {
+type ArDaemonServer interface {
 	Add(context.Context, *AddRequest) (*AddResponse, error)
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 	Trigger(context.Context, *TriggerRequest) (*TriggerResponse, error)
-	mustEmbedUnimplementedAutorunServer()
+	mustEmbedUnimplementedArDaemonServer()
 }
 
-// UnimplementedAutorunServer must be embedded to have
+// UnimplementedArDaemonServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedAutorunServer struct{}
+type UnimplementedArDaemonServer struct{}
 
-func (UnimplementedAutorunServer) Add(context.Context, *AddRequest) (*AddResponse, error) {
+func (UnimplementedArDaemonServer) Add(context.Context, *AddRequest) (*AddResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Add not implemented")
 }
-func (UnimplementedAutorunServer) Update(context.Context, *UpdateRequest) (*UpdateResponse, error) {
+func (UnimplementedArDaemonServer) Update(context.Context, *UpdateRequest) (*UpdateResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedAutorunServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
+func (UnimplementedArDaemonServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedAutorunServer) Trigger(context.Context, *TriggerRequest) (*TriggerResponse, error) {
+func (UnimplementedArDaemonServer) Trigger(context.Context, *TriggerRequest) (*TriggerResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Trigger not implemented")
 }
-func (UnimplementedAutorunServer) mustEmbedUnimplementedAutorunServer() {}
-func (UnimplementedAutorunServer) testEmbeddedByValue()                 {}
+func (UnimplementedArDaemonServer) mustEmbedUnimplementedArDaemonServer() {}
+func (UnimplementedArDaemonServer) testEmbeddedByValue()                  {}
 
-// UnsafeAutorunServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to AutorunServer will
+// UnsafeArDaemonServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ArDaemonServer will
 // result in compilation errors.
-type UnsafeAutorunServer interface {
-	mustEmbedUnimplementedAutorunServer()
+type UnsafeArDaemonServer interface {
+	mustEmbedUnimplementedArDaemonServer()
 }
 
-func RegisterAutorunServer(s grpc.ServiceRegistrar, srv AutorunServer) {
-	// If the following call panics, it indicates UnimplementedAutorunServer was
+func RegisterArDaemonServer(s grpc.ServiceRegistrar, srv ArDaemonServer) {
+	// If the following call panics, it indicates UnimplementedArDaemonServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&Autorun_ServiceDesc, srv)
+	s.RegisterService(&ArDaemon_ServiceDesc, srv)
 }
 
-func _Autorun_Add_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ArDaemon_Add_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(AddRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AutorunServer).Add(ctx, in)
+		return srv.(ArDaemonServer).Add(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Autorun_Add_FullMethodName,
+		FullMethod: ArDaemon_Add_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AutorunServer).Add(ctx, req.(*AddRequest))
+		return srv.(ArDaemonServer).Add(ctx, req.(*AddRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Autorun_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ArDaemon_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AutorunServer).Update(ctx, in)
+		return srv.(ArDaemonServer).Update(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Autorun_Update_FullMethodName,
+		FullMethod: ArDaemon_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AutorunServer).Update(ctx, req.(*UpdateRequest))
+		return srv.(ArDaemonServer).Update(ctx, req.(*UpdateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Autorun_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ArDaemon_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AutorunServer).Delete(ctx, in)
+		return srv.(ArDaemonServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Autorun_Delete_FullMethodName,
+		FullMethod: ArDaemon_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AutorunServer).Delete(ctx, req.(*DeleteRequest))
+		return srv.(ArDaemonServer).Delete(ctx, req.(*DeleteRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Autorun_Trigger_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ArDaemon_Trigger_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TriggerRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AutorunServer).Trigger(ctx, in)
+		return srv.(ArDaemonServer).Trigger(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Autorun_Trigger_FullMethodName,
+		FullMethod: ArDaemon_Trigger_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AutorunServer).Trigger(ctx, req.(*TriggerRequest))
+		return srv.(ArDaemonServer).Trigger(ctx, req.(*TriggerRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Autorun_ServiceDesc is the grpc.ServiceDesc for Autorun service.
+// ArDaemon_ServiceDesc is the grpc.ServiceDesc for ArDaemon service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Autorun_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "autorun.Autorun",
-	HandlerType: (*AutorunServer)(nil),
+var ArDaemon_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "ardaemon.ArDaemon",
+	HandlerType: (*ArDaemonServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Add",
-			Handler:    _Autorun_Add_Handler,
+			Handler:    _ArDaemon_Add_Handler,
 		},
 		{
 			MethodName: "Update",
-			Handler:    _Autorun_Update_Handler,
+			Handler:    _ArDaemon_Update_Handler,
 		},
 		{
 			MethodName: "Delete",
-			Handler:    _Autorun_Delete_Handler,
+			Handler:    _ArDaemon_Delete_Handler,
 		},
 		{
 			MethodName: "Trigger",
-			Handler:    _Autorun_Trigger_Handler,
+			Handler:    _ArDaemon_Trigger_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

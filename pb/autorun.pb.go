@@ -465,7 +465,7 @@ var File_proto_autorun_proto protoreflect.FileDescriptor
 
 const file_proto_autorun_proto_rawDesc = "" +
 	"\n" +
-	"\x13proto/autorun.proto\x12\aautorun\"\x81\x01\n" +
+	"\x13proto/autorun.proto\x12\bardaemon\"\x81\x01\n" +
 	"\n" +
 	"AddRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12 \n" +
@@ -493,12 +493,12 @@ const file_proto_autorun_proto_rawDesc = "" +
 	"\x0eTriggerRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\"!\n" +
 	"\x0fTriggerResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x04R\x02id2\xef\x01\n" +
-	"\aAutorun\x120\n" +
-	"\x03Add\x12\x13.autorun.AddRequest\x1a\x14.autorun.AddResponse\x129\n" +
-	"\x06Update\x12\x16.autorun.UpdateRequest\x1a\x17.autorun.UpdateResponse\x129\n" +
-	"\x06Delete\x12\x16.autorun.DeleteRequest\x1a\x17.autorun.DeleteResponse\x12<\n" +
-	"\aTrigger\x12\x17.autorun.TriggerRequest\x1a\x18.autorun.TriggerResponseB\x06Z\x04./pbb\x06proto3"
+	"\x02id\x18\x01 \x01(\x04R\x02id2\xf8\x01\n" +
+	"\bArDaemon\x122\n" +
+	"\x03Add\x12\x14.ardaemon.AddRequest\x1a\x15.ardaemon.AddResponse\x12;\n" +
+	"\x06Update\x12\x17.ardaemon.UpdateRequest\x1a\x18.ardaemon.UpdateResponse\x12;\n" +
+	"\x06Delete\x12\x17.ardaemon.DeleteRequest\x1a\x18.ardaemon.DeleteResponse\x12>\n" +
+	"\aTrigger\x12\x18.ardaemon.TriggerRequest\x1a\x19.ardaemon.TriggerResponseB\x06Z\x04./pbb\x06proto3"
 
 var (
 	file_proto_autorun_proto_rawDescOnce sync.Once
@@ -514,24 +514,24 @@ func file_proto_autorun_proto_rawDescGZIP() []byte {
 
 var file_proto_autorun_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_proto_autorun_proto_goTypes = []any{
-	(*AddRequest)(nil),      // 0: autorun.AddRequest
-	(*AddResponse)(nil),     // 1: autorun.AddResponse
-	(*UpdateRequest)(nil),   // 2: autorun.UpdateRequest
-	(*UpdateResponse)(nil),  // 3: autorun.UpdateResponse
-	(*DeleteRequest)(nil),   // 4: autorun.DeleteRequest
-	(*DeleteResponse)(nil),  // 5: autorun.DeleteResponse
-	(*TriggerRequest)(nil),  // 6: autorun.TriggerRequest
-	(*TriggerResponse)(nil), // 7: autorun.TriggerResponse
+	(*AddRequest)(nil),      // 0: ardaemon.AddRequest
+	(*AddResponse)(nil),     // 1: ardaemon.AddResponse
+	(*UpdateRequest)(nil),   // 2: ardaemon.UpdateRequest
+	(*UpdateResponse)(nil),  // 3: ardaemon.UpdateResponse
+	(*DeleteRequest)(nil),   // 4: ardaemon.DeleteRequest
+	(*DeleteResponse)(nil),  // 5: ardaemon.DeleteResponse
+	(*TriggerRequest)(nil),  // 6: ardaemon.TriggerRequest
+	(*TriggerResponse)(nil), // 7: ardaemon.TriggerResponse
 }
 var file_proto_autorun_proto_depIdxs = []int32{
-	0, // 0: autorun.Autorun.Add:input_type -> autorun.AddRequest
-	2, // 1: autorun.Autorun.Update:input_type -> autorun.UpdateRequest
-	4, // 2: autorun.Autorun.Delete:input_type -> autorun.DeleteRequest
-	6, // 3: autorun.Autorun.Trigger:input_type -> autorun.TriggerRequest
-	1, // 4: autorun.Autorun.Add:output_type -> autorun.AddResponse
-	3, // 5: autorun.Autorun.Update:output_type -> autorun.UpdateResponse
-	5, // 6: autorun.Autorun.Delete:output_type -> autorun.DeleteResponse
-	7, // 7: autorun.Autorun.Trigger:output_type -> autorun.TriggerResponse
+	0, // 0: ardaemon.ArDaemon.Add:input_type -> ardaemon.AddRequest
+	2, // 1: ardaemon.ArDaemon.Update:input_type -> ardaemon.UpdateRequest
+	4, // 2: ardaemon.ArDaemon.Delete:input_type -> ardaemon.DeleteRequest
+	6, // 3: ardaemon.ArDaemon.Trigger:input_type -> ardaemon.TriggerRequest
+	1, // 4: ardaemon.ArDaemon.Add:output_type -> ardaemon.AddResponse
+	3, // 5: ardaemon.ArDaemon.Update:output_type -> ardaemon.UpdateResponse
+	5, // 6: ardaemon.ArDaemon.Delete:output_type -> ardaemon.DeleteResponse
+	7, // 7: ardaemon.ArDaemon.Trigger:output_type -> ardaemon.TriggerResponse
 	4, // [4:8] is the sub-list for method output_type
 	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

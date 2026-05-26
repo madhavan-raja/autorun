@@ -16,14 +16,14 @@ func init() {
 }
 
 type ArDaemonServer struct {
-	pb.UnimplementedAutorunServer
-	Autorun *ardaemon.ArDaemon
+	pb.UnimplementedArDaemonServer
+	ArDaemon *ardaemon.ArDaemon
 }
 
 func (a *ArDaemonServer) Add(ctx context.Context, req *pb.AddRequest) (*pb.AddResponse, error) {
 	logger.Info("Received Add Request", "req", req)
 
-	id, err := a.Autorun.Add(req.Name, req.Description, req.Command, req.CronSchedule)
+	id, err := a.ArDaemon.Add(req.Name, req.Description, req.Command, req.CronSchedule)
 	if err != nil {
 		return nil, err
 	}

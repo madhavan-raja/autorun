@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package autorun;
+package ardaemon;
 option go_package = "./pb";
 
 message AddRequest {
@@ -46,7 +46,7 @@ message TriggerResponse {
   uint64 id = 1;
 }
 
-service Autorun {
+service ArDaemon {
   rpc Add(AddRequest) returns (AddResponse);
   rpc Update(UpdateRequest) returns (UpdateResponse);
   rpc Delete(DeleteRequest) returns (DeleteResponse);

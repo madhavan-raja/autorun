@@ -30,7 +30,7 @@ func main() {
 
 	s := grpc.NewServer()
 
-	pb.RegisterAutorunServer(s, &server.ArDaemonServer{Autorun: a})
+	pb.RegisterArDaemonServer(s, &server.ArDaemonServer{ArDaemon: a})
 	if err = s.Serve(lis); err != nil {
 		logger.Error("Cannot serve: %s", err)
 	}

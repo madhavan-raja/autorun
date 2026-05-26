@@ -9,6 +9,7 @@ require (
 )
 
 require (
+	github.com/lmittmann/tint v1.1.3 // indirect
 	golang.org/x/net v0.51.0 // indirect
 	golang.org/x/sys v0.42.0 // indirect
 	golang.org/x/text v0.34.0 // indirect

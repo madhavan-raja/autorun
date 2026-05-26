@@ -7,7 +7,6 @@ import (
 	"net"
 
 	"github.com/madhavan-raja/autorun/internal"
-	"github.com/madhavan-raja/autorun/internal/types"
 	"github.com/madhavan-raja/autorun/pb"
 	"google.golang.org/grpc"
 )
@@ -20,7 +19,7 @@ func init() {
 
 type autorunServer struct {
 	pb.UnimplementedAutorunServer
-	autorun *types.Autorun
+	autorun *internal.Autorun
 }
 
 func (a *autorunServer) Add(ctx context.Context, req *pb.AddRequest) (*pb.AddResponse, error) {
@@ -46,7 +45,7 @@ func (a *autorunServer) Trigger(ctx context.Context, req *pb.TriggerRequest) (*p
 func main() {
 	port := uint32(5678)
 
-	a := types.NewAutorun()
+	a := internal.NewAutorun()
 
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
 	if err != nil {

@@ -5,7 +5,7 @@ import (
 	"log/slog"
 
 	"github.com/madhavan-raja/autorun/internal"
-	"github.com/madhavan-raja/autorun/internal/autorun"
+	"github.com/madhavan-raja/autorun/internal/ardaemon"
 	"github.com/madhavan-raja/autorun/pb"
 )
 
@@ -15,12 +15,12 @@ func init() {
 	logger = internal.Logger.WithGroup("server")
 }
 
-type AutorunServer struct {
+type ArDaemonServer struct {
 	pb.UnimplementedAutorunServer
-	Autorun *autorun.Autorun
+	Autorun *ardaemon.ArDaemon
 }
 
-func (a *AutorunServer) Add(ctx context.Context, req *pb.AddRequest) (*pb.AddResponse, error) {
+func (a *ArDaemonServer) Add(ctx context.Context, req *pb.AddRequest) (*pb.AddResponse, error) {
 	logger.Info("Received Add Request", "req", req)
 
 	id, err := a.Autorun.Add(req.Name, req.Description, req.Command, req.CronSchedule)
@@ -31,17 +31,17 @@ func (a *AutorunServer) Add(ctx context.Context, req *pb.AddRequest) (*pb.AddRes
 	return &pb.AddResponse{Id: id}, nil
 }
 
-func (a *AutorunServer) Update(ctx context.Context, req *pb.UpdateRequest) (*pb.UpdateResponse, error) {
+func (a *ArDaemonServer) Update(ctx context.Context, req *pb.UpdateRequest) (*pb.UpdateResponse, error) {
 	logger.Info("Received Update Request", "req", req)
 	return &pb.UpdateResponse{}, nil
 }
 
-func (a *AutorunServer) Delete(ctx context.Context, req *pb.DeleteRequest) (*pb.DeleteResponse, error) {
+func (a *ArDaemonServer) Delete(ctx context.Context, req *pb.DeleteRequest) (*pb.DeleteResponse, error) {
 	logger.Info("Received Delete Request", "req", req)
 	return &pb.DeleteResponse{}, nil
 }
 
-func (a *AutorunServer) Trigger(ctx context.Context, req *pb.TriggerRequest) (*pb.TriggerResponse, error) {
+func (a *ArDaemonServer) Trigger(ctx context.Context, req *pb.TriggerRequest) (*pb.TriggerResponse, error) {
 	logger.Info("Received Trigger Request", "req", req)
 	return &pb.TriggerResponse{}, nil
 }

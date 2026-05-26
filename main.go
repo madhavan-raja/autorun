@@ -6,7 +6,7 @@ import (
 	"net"
 
 	"github.com/madhavan-raja/autorun/internal"
-	"github.com/madhavan-raja/autorun/internal/autorun"
+	"github.com/madhavan-raja/autorun/internal/ardaemon"
 	"github.com/madhavan-raja/autorun/internal/server"
 	"github.com/madhavan-raja/autorun/pb"
 	"google.golang.org/grpc"
@@ -21,7 +21,7 @@ func init() {
 func main() {
 	port := uint32(5678)
 
-	a := autorun.NewAutorun()
+	a := ardaemon.NewArDaemon()
 
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
 	if err != nil {
@@ -30,7 +30,7 @@ func main() {
 
 	s := grpc.NewServer()
 
-	pb.RegisterAutorunServer(s, &server.AutorunServer{Autorun: a})
+	pb.RegisterAutorunServer(s, &server.ArDaemonServer{Autorun: a})
 	if err = s.Serve(lis); err != nil {
 		logger.Error("Cannot serve: %s", err)
 	}

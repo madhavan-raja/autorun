@@ -1,4 +1,4 @@
-package autorun
+package ardaemon
 
 import (
 	"log/slog"
@@ -11,7 +11,7 @@ import (
 var logger *slog.Logger
 
 func init() {
-	logger = internal.Logger.WithGroup("autorun")
+	logger = internal.Logger.WithGroup("ardaemon")
 }
 
 type Process struct {
@@ -22,23 +22,23 @@ type Process struct {
 	CronId      cron.EntryID
 }
 
-type Autorun struct {
+type ArDaemon struct {
 	mu sync.RWMutex
 	cron *cron.Cron
 	jobs map[uint64]*Process
 }
 
-func NewAutorun() *Autorun {
+func NewArDaemon() *ArDaemon {
 	c := cron.New(cron.WithSeconds())
 	c.Start()
 
-	return &Autorun {
+	return &ArDaemon {
 		cron: c,
 		jobs: make(map[uint64]*Process),
 	}
 }
 
-func (a *Autorun) Add(name string, description string, cmd string, schedule string) (uint64, error) {
+func (a *ArDaemon) Add(name string, description string, cmd string, schedule string) (uint64, error) {
 	a.mu.Lock()
 	defer a.mu.Unlock()
 

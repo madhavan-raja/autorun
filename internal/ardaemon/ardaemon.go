@@ -66,6 +66,20 @@ func (a *ArDaemon) schedule(ctx context.Context, p sqlc.Process) error {
 	return nil
 }
 
+func (a *ArDaemon) List(ctx context.Context) ([]sqlc.Process, error) {
+	a.mu.Lock()
+	defer a.mu.Unlock()
+
+	queries := sqlc.New(a.db)
+
+	processes, err := queries.ListProcesses(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	return processes, nil
+}
+
 func (a *ArDaemon) Add(ctx context.Context, name string, description string, cmd string, interval uint32) (*sqlc.Process, error) {
 	a.mu.Lock()
 	defer a.mu.Unlock()
@@ -87,16 +101,19 @@ func (a *ArDaemon) Add(ctx context.Context, name string, description string, cmd
 	return &p, nil
 }
 
-func (a *ArDaemon) List(ctx context.Context) ([]sqlc.Process, error) {
+func (a *ArDaemon) Delete(ctx context.Context, id uint64) error {
 	a.mu.Lock()
 	defer a.mu.Unlock()
 
 	queries := sqlc.New(a.db)
 
-	processes, err := queries.ListProcesses(ctx)
+	err := queries.DeleteProcess(ctx, int64(id))
 	if err != nil {
-		return nil, err
+		return err
 	}
 
-	return processes, nil
+	a.cron.Remove(a.cronIds[id])
+	delete(a.cronIds, id)
+
+	return nil
 }

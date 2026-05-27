@@ -13,3 +13,7 @@ INSERT INTO process (
   ?, ?, ?, ?
 )
 RETURNING *;
+
+-- name: DeleteProcess :exec
+DELETE FROM process
+WHERE id = ?;

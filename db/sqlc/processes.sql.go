@@ -44,6 +44,16 @@ func (q *Queries) AddProcess(ctx context.Context, arg AddProcessParams) (Process
 	return i, err
 }
 
+const deleteProcess = `-- name: DeleteProcess :exec
+DELETE FROM process
+WHERE id = ?
+`
+
+func (q *Queries) DeleteProcess(ctx context.Context, id int64) error {
+	_, err := q.db.ExecContext(ctx, deleteProcess, id)
+	return err
+}
+
 const getProcess = `-- name: GetProcess :one
 SELECT id, name, description, command, interval FROM process
 WHERE id = ? LIMIT 1

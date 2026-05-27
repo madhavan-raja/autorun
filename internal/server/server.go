@@ -67,6 +67,12 @@ func (a *ArDaemonServer) Update(ctx context.Context, req *pb.UpdateRequest) (*pb
 
 func (a *ArDaemonServer) Delete(ctx context.Context, req *pb.DeleteRequest) (*pb.DeleteResponse, error) {
 	logger.Info("Received Delete Request", "req", req)
+	
+	err := a.ArDaemon.Delete(ctx, req.GetId())
+	if err != nil {
+		return nil, err
+	}
+	
 	return &pb.DeleteResponse{}, nil
 }
 

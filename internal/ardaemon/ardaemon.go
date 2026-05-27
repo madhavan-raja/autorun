@@ -81,7 +81,7 @@ func (a *ArDaemon) schedule(ctx context.Context, p sqlc.Process) error {
 	return nil
 }
 
-func (a *ArDaemon) Add(ctx context.Context, name string, description string, cmd string, interval uint32) (uint64, error) {
+func (a *ArDaemon) Add(ctx context.Context, name string, description string, cmd string, interval uint32) (*sqlc.Process, error) {
 	a.mu.Lock()
 	defer a.mu.Unlock()
 
@@ -96,10 +96,10 @@ func (a *ArDaemon) Add(ctx context.Context, name string, description string, cmd
 
 	err = a.schedule(ctx, p)
 	if err != nil {
-		return 0, err
+		return nil, err
 	}
 
-	return uint64(p.ID), nil
+	return &p, nil
 }
 
 func (a *ArDaemon) List(ctx context.Context) ([]Process, error) {

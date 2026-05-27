@@ -25,7 +25,11 @@ message AddRequest {
 }
 
 message AddResponse {
-  uint64 id = 1;
+  uint64 id            = 1;
+  string name          = 2;
+  string description   = 3;
+  string command       = 4;
+  uint32 interval      = 5;
 }
 
 message UpdateRequest {

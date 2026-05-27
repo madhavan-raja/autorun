@@ -46,12 +46,18 @@ func (a *ArDaemonServer) List(ctx context.Context, req *pb.ListRequest) (*pb.Lis
 func (a *ArDaemonServer) Add(ctx context.Context, req *pb.AddRequest) (*pb.AddResponse, error) {
 	logger.Info("Received Add Request", "req", req)
 
-	id, err := a.ArDaemon.Add(ctx, req.GetName(), req.GetDescription(), req.GetCommand(), req.GetInterval())
+	p, err := a.ArDaemon.Add(ctx, req.GetName(), req.GetDescription(), req.GetCommand(), req.GetInterval())
 	if err != nil {
 		return nil, err
 	}
 
-	return &pb.AddResponse{Id: id}, nil
+	return &pb.AddResponse{
+		Id: uint64(p.ID),
+		Name: p.Name,
+		Description: p.Description.String,
+		Command: p.Command,
+		Interval: uint32(p.Interval),
+	}, nil
 }
 
 func (a *ArDaemonServer) Update(ctx context.Context, req *pb.UpdateRequest) (*pb.UpdateResponse, error) {

@@ -9,6 +9,8 @@ import (
 	"github.com/spf13/cobra"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
+
+	cc "github.com/ivanpirog/coloredcobra"
 )
 
 var port int32
@@ -33,6 +35,15 @@ var rootCmd = &cobra.Command{
 }
 
 func Execute() {
+	cc.Init(&cc.Config{
+        RootCmd:  rootCmd,
+        Headings: cc.Bold,
+        Commands: cc.Bold,
+        Example:  cc.Italic,
+        ExecName: cc.Bold,
+        Flags:    cc.Bold,
+    })
+
 	err := rootCmd.Execute()
 	if err != nil {
 		os.Exit(1)

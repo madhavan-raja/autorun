@@ -20,6 +20,23 @@ type ArDaemonServer struct {
 	ArDaemon *ardaemon.ArDaemon
 }
 
+func (a *ArDaemonServer) List(ctx context.Context, req *pb.ListRequest) (*pb.ListResponse, error) {
+	logger.Info("Received List Request")
+	processes := []*pb.Process{}
+
+	for _, p := range a.ArDaemon.Jobs {
+		processes = append(processes, &pb.Process{
+			Id: p.Id,
+			Name: p.Name,
+			Description: p.Description,
+			CronSchedule: "",
+			Command: p.Cmd,
+		})
+	}
+
+	return &pb.ListResponse{Processes: processes}, nil
+}
+
 func (a *ArDaemonServer) Add(ctx context.Context, req *pb.AddRequest) (*pb.AddResponse, error) {
 	logger.Info("Received Add Request", "req", req)
 

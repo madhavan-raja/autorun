@@ -25,7 +25,7 @@ type Process struct {
 type ArDaemon struct {
 	mu sync.RWMutex
 	cron *cron.Cron
-	jobs map[uint64]*Process
+	Jobs map[uint64]*Process
 }
 
 func NewArDaemon() *ArDaemon {
@@ -34,7 +34,7 @@ func NewArDaemon() *ArDaemon {
 
 	return &ArDaemon {
 		cron: c,
-		jobs: make(map[uint64]*Process),
+		Jobs: make(map[uint64]*Process),
 	}
 }
 
@@ -43,7 +43,7 @@ func (a *ArDaemon) Add(name string, description string, cmd string, schedule str
 	defer a.mu.Unlock()
 
 	maxId := uint64(0)
-	for key := range a.jobs {
+	for key := range a.Jobs {
 		maxId = max(maxId, key)
 	}
 	newId := maxId + 1
@@ -53,7 +53,7 @@ func (a *ArDaemon) Add(name string, description string, cmd string, schedule str
 		return 0, err
 	}
 
-	a.jobs[newId] = &Process{
+	a.Jobs[newId] = &Process{
 		Id: newId,
 		Name: name,
 		Description: description,

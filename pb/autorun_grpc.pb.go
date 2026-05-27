@@ -19,6 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
+	ArDaemon_List_FullMethodName    = "/ardaemon.ArDaemon/List"
 	ArDaemon_Add_FullMethodName     = "/ardaemon.ArDaemon/Add"
 	ArDaemon_Update_FullMethodName  = "/ardaemon.ArDaemon/Update"
 	ArDaemon_Delete_FullMethodName  = "/ardaemon.ArDaemon/Delete"
@@ -29,6 +30,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ArDaemonClient interface {
+	List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error)
 	Add(ctx context.Context, in *AddRequest, opts ...grpc.CallOption) (*AddResponse, error)
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
@@ -41,6 +43,16 @@ type arDaemonClient struct {
 
 func NewArDaemonClient(cc grpc.ClientConnInterface) ArDaemonClient {
 	return &arDaemonClient{cc}
+}
+
+func (c *arDaemonClient) List(ctx context.Context, in *ListRequest, opts ...grpc.CallOption) (*ListResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListResponse)
+	err := c.cc.Invoke(ctx, ArDaemon_List_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *arDaemonClient) Add(ctx context.Context, in *AddRequest, opts ...grpc.CallOption) (*AddResponse, error) {
@@ -87,6 +99,7 @@ func (c *arDaemonClient) Trigger(ctx context.Context, in *TriggerRequest, opts .
 // All implementations must embed UnimplementedArDaemonServer
 // for forward compatibility.
 type ArDaemonServer interface {
+	List(context.Context, *ListRequest) (*ListResponse, error)
 	Add(context.Context, *AddRequest) (*AddResponse, error)
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
@@ -101,6 +114,9 @@ type ArDaemonServer interface {
 // pointer dereference when methods are called.
 type UnimplementedArDaemonServer struct{}
 
+func (UnimplementedArDaemonServer) List(context.Context, *ListRequest) (*ListResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method List not implemented")
+}
 func (UnimplementedArDaemonServer) Add(context.Context, *AddRequest) (*AddResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Add not implemented")
 }
@@ -132,6 +148,24 @@ func RegisterArDaemonServer(s grpc.ServiceRegistrar, srv ArDaemonServer) {
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&ArDaemon_ServiceDesc, srv)
+}
+
+func _ArDaemon_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArDaemonServer).List(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArDaemon_List_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArDaemonServer).List(ctx, req.(*ListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _ArDaemon_Add_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -213,6 +247,10 @@ var ArDaemon_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "ardaemon.ArDaemon",
 	HandlerType: (*ArDaemonServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "List",
+			Handler:    _ArDaemon_List_Handler,
+		},
 		{
 			MethodName: "Add",
 			Handler:    _ArDaemon_Add_Handler,

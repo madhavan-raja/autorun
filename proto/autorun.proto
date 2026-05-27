@@ -3,6 +3,20 @@ syntax = "proto3";
 package ardaemon;
 option go_package = "./pb";
 
+message Process {
+  uint64 id            = 1;
+  string name          = 2;
+  string description   = 3;
+  string command       = 4;
+  string cron_schedule = 5;
+}
+
+message ListRequest{}
+
+message ListResponse {
+  repeated Process processes = 1;
+}
+
 message AddRequest {
   string name          = 1;
   string description   = 2;
@@ -47,6 +61,7 @@ message TriggerResponse {
 }
 
 service ArDaemon {
+  rpc List(ListRequest) returns (ListResponse);
   rpc Add(AddRequest) returns (AddResponse);
   rpc Update(UpdateRequest) returns (UpdateResponse);
   rpc Delete(DeleteRequest) returns (DeleteResponse);

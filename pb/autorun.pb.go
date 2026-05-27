@@ -21,6 +21,162 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type Process struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	Command       string                 `protobuf:"bytes,4,opt,name=command,proto3" json:"command,omitempty"`
+	CronSchedule  string                 `protobuf:"bytes,5,opt,name=cron_schedule,json=cronSchedule,proto3" json:"cron_schedule,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Process) Reset() {
+	*x = Process{}
+	mi := &file_proto_autorun_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Process) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Process) ProtoMessage() {}
+
+func (x *Process) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_autorun_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Process.ProtoReflect.Descriptor instead.
+func (*Process) Descriptor() ([]byte, []int) {
+	return file_proto_autorun_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *Process) GetId() uint64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *Process) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Process) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *Process) GetCommand() string {
+	if x != nil {
+		return x.Command
+	}
+	return ""
+}
+
+func (x *Process) GetCronSchedule() string {
+	if x != nil {
+		return x.CronSchedule
+	}
+	return ""
+}
+
+type ListRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListRequest) Reset() {
+	*x = ListRequest{}
+	mi := &file_proto_autorun_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListRequest) ProtoMessage() {}
+
+func (x *ListRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_autorun_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListRequest.ProtoReflect.Descriptor instead.
+func (*ListRequest) Descriptor() ([]byte, []int) {
+	return file_proto_autorun_proto_rawDescGZIP(), []int{1}
+}
+
+type ListResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Processes     []*Process             `protobuf:"bytes,1,rep,name=processes,proto3" json:"processes,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListResponse) Reset() {
+	*x = ListResponse{}
+	mi := &file_proto_autorun_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListResponse) ProtoMessage() {}
+
+func (x *ListResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_autorun_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListResponse.ProtoReflect.Descriptor instead.
+func (*ListResponse) Descriptor() ([]byte, []int) {
+	return file_proto_autorun_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *ListResponse) GetProcesses() []*Process {
+	if x != nil {
+		return x.Processes
+	}
+	return nil
+}
+
 type AddRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
@@ -33,7 +189,7 @@ type AddRequest struct {
 
 func (x *AddRequest) Reset() {
 	*x = AddRequest{}
-	mi := &file_proto_autorun_proto_msgTypes[0]
+	mi := &file_proto_autorun_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -45,7 +201,7 @@ func (x *AddRequest) String() string {
 func (*AddRequest) ProtoMessage() {}
 
 func (x *AddRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_autorun_proto_msgTypes[0]
+	mi := &file_proto_autorun_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -58,7 +214,7 @@ func (x *AddRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddRequest.ProtoReflect.Descriptor instead.
 func (*AddRequest) Descriptor() ([]byte, []int) {
-	return file_proto_autorun_proto_rawDescGZIP(), []int{0}
+	return file_proto_autorun_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *AddRequest) GetName() string {
@@ -98,7 +254,7 @@ type AddResponse struct {
 
 func (x *AddResponse) Reset() {
 	*x = AddResponse{}
-	mi := &file_proto_autorun_proto_msgTypes[1]
+	mi := &file_proto_autorun_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -110,7 +266,7 @@ func (x *AddResponse) String() string {
 func (*AddResponse) ProtoMessage() {}
 
 func (x *AddResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_autorun_proto_msgTypes[1]
+	mi := &file_proto_autorun_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -123,7 +279,7 @@ func (x *AddResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddResponse.ProtoReflect.Descriptor instead.
 func (*AddResponse) Descriptor() ([]byte, []int) {
-	return file_proto_autorun_proto_rawDescGZIP(), []int{1}
+	return file_proto_autorun_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *AddResponse) GetId() uint64 {
@@ -146,7 +302,7 @@ type UpdateRequest struct {
 
 func (x *UpdateRequest) Reset() {
 	*x = UpdateRequest{}
-	mi := &file_proto_autorun_proto_msgTypes[2]
+	mi := &file_proto_autorun_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -158,7 +314,7 @@ func (x *UpdateRequest) String() string {
 func (*UpdateRequest) ProtoMessage() {}
 
 func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_autorun_proto_msgTypes[2]
+	mi := &file_proto_autorun_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -171,7 +327,7 @@ func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateRequest.ProtoReflect.Descriptor instead.
 func (*UpdateRequest) Descriptor() ([]byte, []int) {
-	return file_proto_autorun_proto_rawDescGZIP(), []int{2}
+	return file_proto_autorun_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *UpdateRequest) GetId() uint64 {
@@ -222,7 +378,7 @@ type UpdateResponse struct {
 
 func (x *UpdateResponse) Reset() {
 	*x = UpdateResponse{}
-	mi := &file_proto_autorun_proto_msgTypes[3]
+	mi := &file_proto_autorun_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -234,7 +390,7 @@ func (x *UpdateResponse) String() string {
 func (*UpdateResponse) ProtoMessage() {}
 
 func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_autorun_proto_msgTypes[3]
+	mi := &file_proto_autorun_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -247,7 +403,7 @@ func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateResponse.ProtoReflect.Descriptor instead.
 func (*UpdateResponse) Descriptor() ([]byte, []int) {
-	return file_proto_autorun_proto_rawDescGZIP(), []int{3}
+	return file_proto_autorun_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *UpdateResponse) GetId() uint64 {
@@ -294,7 +450,7 @@ type DeleteRequest struct {
 
 func (x *DeleteRequest) Reset() {
 	*x = DeleteRequest{}
-	mi := &file_proto_autorun_proto_msgTypes[4]
+	mi := &file_proto_autorun_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -306,7 +462,7 @@ func (x *DeleteRequest) String() string {
 func (*DeleteRequest) ProtoMessage() {}
 
 func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_autorun_proto_msgTypes[4]
+	mi := &file_proto_autorun_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -319,7 +475,7 @@ func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRequest) Descriptor() ([]byte, []int) {
-	return file_proto_autorun_proto_rawDescGZIP(), []int{4}
+	return file_proto_autorun_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *DeleteRequest) GetId() uint64 {
@@ -338,7 +494,7 @@ type DeleteResponse struct {
 
 func (x *DeleteResponse) Reset() {
 	*x = DeleteResponse{}
-	mi := &file_proto_autorun_proto_msgTypes[5]
+	mi := &file_proto_autorun_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -350,7 +506,7 @@ func (x *DeleteResponse) String() string {
 func (*DeleteResponse) ProtoMessage() {}
 
 func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_autorun_proto_msgTypes[5]
+	mi := &file_proto_autorun_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -363,7 +519,7 @@ func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteResponse.ProtoReflect.Descriptor instead.
 func (*DeleteResponse) Descriptor() ([]byte, []int) {
-	return file_proto_autorun_proto_rawDescGZIP(), []int{5}
+	return file_proto_autorun_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *DeleteResponse) GetId() uint64 {
@@ -382,7 +538,7 @@ type TriggerRequest struct {
 
 func (x *TriggerRequest) Reset() {
 	*x = TriggerRequest{}
-	mi := &file_proto_autorun_proto_msgTypes[6]
+	mi := &file_proto_autorun_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -394,7 +550,7 @@ func (x *TriggerRequest) String() string {
 func (*TriggerRequest) ProtoMessage() {}
 
 func (x *TriggerRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_autorun_proto_msgTypes[6]
+	mi := &file_proto_autorun_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -407,7 +563,7 @@ func (x *TriggerRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TriggerRequest.ProtoReflect.Descriptor instead.
 func (*TriggerRequest) Descriptor() ([]byte, []int) {
-	return file_proto_autorun_proto_rawDescGZIP(), []int{6}
+	return file_proto_autorun_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *TriggerRequest) GetId() uint64 {
@@ -426,7 +582,7 @@ type TriggerResponse struct {
 
 func (x *TriggerResponse) Reset() {
 	*x = TriggerResponse{}
-	mi := &file_proto_autorun_proto_msgTypes[7]
+	mi := &file_proto_autorun_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -438,7 +594,7 @@ func (x *TriggerResponse) String() string {
 func (*TriggerResponse) ProtoMessage() {}
 
 func (x *TriggerResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_autorun_proto_msgTypes[7]
+	mi := &file_proto_autorun_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -451,7 +607,7 @@ func (x *TriggerResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TriggerResponse.ProtoReflect.Descriptor instead.
 func (*TriggerResponse) Descriptor() ([]byte, []int) {
-	return file_proto_autorun_proto_rawDescGZIP(), []int{7}
+	return file_proto_autorun_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *TriggerResponse) GetId() uint64 {
@@ -465,7 +621,16 @@ var File_proto_autorun_proto protoreflect.FileDescriptor
 
 const file_proto_autorun_proto_rawDesc = "" +
 	"\n" +
-	"\x13proto/autorun.proto\x12\bardaemon\"\x81\x01\n" +
+	"\x13proto/autorun.proto\x12\bardaemon\"\x8e\x01\n" +
+	"\aProcess\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12 \n" +
+	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\x18\n" +
+	"\acommand\x18\x04 \x01(\tR\acommand\x12#\n" +
+	"\rcron_schedule\x18\x05 \x01(\tR\fcronSchedule\"\r\n" +
+	"\vListRequest\"?\n" +
+	"\fListResponse\x12/\n" +
+	"\tprocesses\x18\x01 \x03(\v2\x11.ardaemon.ProcessR\tprocesses\"\x81\x01\n" +
 	"\n" +
 	"AddRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12 \n" +
@@ -493,8 +658,9 @@ const file_proto_autorun_proto_rawDesc = "" +
 	"\x0eTriggerRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\"!\n" +
 	"\x0fTriggerResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x04R\x02id2\xf8\x01\n" +
-	"\bArDaemon\x122\n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id2\xaf\x02\n" +
+	"\bArDaemon\x125\n" +
+	"\x04List\x12\x15.ardaemon.ListRequest\x1a\x16.ardaemon.ListResponse\x122\n" +
 	"\x03Add\x12\x14.ardaemon.AddRequest\x1a\x15.ardaemon.AddResponse\x12;\n" +
 	"\x06Update\x12\x17.ardaemon.UpdateRequest\x1a\x18.ardaemon.UpdateResponse\x12;\n" +
 	"\x06Delete\x12\x17.ardaemon.DeleteRequest\x1a\x18.ardaemon.DeleteResponse\x12>\n" +
@@ -512,31 +678,37 @@ func file_proto_autorun_proto_rawDescGZIP() []byte {
 	return file_proto_autorun_proto_rawDescData
 }
 
-var file_proto_autorun_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_proto_autorun_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_proto_autorun_proto_goTypes = []any{
-	(*AddRequest)(nil),      // 0: ardaemon.AddRequest
-	(*AddResponse)(nil),     // 1: ardaemon.AddResponse
-	(*UpdateRequest)(nil),   // 2: ardaemon.UpdateRequest
-	(*UpdateResponse)(nil),  // 3: ardaemon.UpdateResponse
-	(*DeleteRequest)(nil),   // 4: ardaemon.DeleteRequest
-	(*DeleteResponse)(nil),  // 5: ardaemon.DeleteResponse
-	(*TriggerRequest)(nil),  // 6: ardaemon.TriggerRequest
-	(*TriggerResponse)(nil), // 7: ardaemon.TriggerResponse
+	(*Process)(nil),         // 0: ardaemon.Process
+	(*ListRequest)(nil),     // 1: ardaemon.ListRequest
+	(*ListResponse)(nil),    // 2: ardaemon.ListResponse
+	(*AddRequest)(nil),      // 3: ardaemon.AddRequest
+	(*AddResponse)(nil),     // 4: ardaemon.AddResponse
+	(*UpdateRequest)(nil),   // 5: ardaemon.UpdateRequest
+	(*UpdateResponse)(nil),  // 6: ardaemon.UpdateResponse
+	(*DeleteRequest)(nil),   // 7: ardaemon.DeleteRequest
+	(*DeleteResponse)(nil),  // 8: ardaemon.DeleteResponse
+	(*TriggerRequest)(nil),  // 9: ardaemon.TriggerRequest
+	(*TriggerResponse)(nil), // 10: ardaemon.TriggerResponse
 }
 var file_proto_autorun_proto_depIdxs = []int32{
-	0, // 0: ardaemon.ArDaemon.Add:input_type -> ardaemon.AddRequest
-	2, // 1: ardaemon.ArDaemon.Update:input_type -> ardaemon.UpdateRequest
-	4, // 2: ardaemon.ArDaemon.Delete:input_type -> ardaemon.DeleteRequest
-	6, // 3: ardaemon.ArDaemon.Trigger:input_type -> ardaemon.TriggerRequest
-	1, // 4: ardaemon.ArDaemon.Add:output_type -> ardaemon.AddResponse
-	3, // 5: ardaemon.ArDaemon.Update:output_type -> ardaemon.UpdateResponse
-	5, // 6: ardaemon.ArDaemon.Delete:output_type -> ardaemon.DeleteResponse
-	7, // 7: ardaemon.ArDaemon.Trigger:output_type -> ardaemon.TriggerResponse
-	4, // [4:8] is the sub-list for method output_type
-	0, // [0:4] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0,  // 0: ardaemon.ListResponse.processes:type_name -> ardaemon.Process
+	1,  // 1: ardaemon.ArDaemon.List:input_type -> ardaemon.ListRequest
+	3,  // 2: ardaemon.ArDaemon.Add:input_type -> ardaemon.AddRequest
+	5,  // 3: ardaemon.ArDaemon.Update:input_type -> ardaemon.UpdateRequest
+	7,  // 4: ardaemon.ArDaemon.Delete:input_type -> ardaemon.DeleteRequest
+	9,  // 5: ardaemon.ArDaemon.Trigger:input_type -> ardaemon.TriggerRequest
+	2,  // 6: ardaemon.ArDaemon.List:output_type -> ardaemon.ListResponse
+	4,  // 7: ardaemon.ArDaemon.Add:output_type -> ardaemon.AddResponse
+	6,  // 8: ardaemon.ArDaemon.Update:output_type -> ardaemon.UpdateResponse
+	8,  // 9: ardaemon.ArDaemon.Delete:output_type -> ardaemon.DeleteResponse
+	10, // 10: ardaemon.ArDaemon.Trigger:output_type -> ardaemon.TriggerResponse
+	6,  // [6:11] is the sub-list for method output_type
+	1,  // [1:6] is the sub-list for method input_type
+	1,  // [1:1] is the sub-list for extension type_name
+	1,  // [1:1] is the sub-list for extension extendee
+	0,  // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_proto_autorun_proto_init() }
@@ -550,7 +722,7 @@ func file_proto_autorun_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_autorun_proto_rawDesc), len(file_proto_autorun_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

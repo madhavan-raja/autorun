@@ -32,11 +32,11 @@ func (a *ArDaemonServer) List(ctx context.Context, req *pb.ListRequest) (*pb.Lis
 
 	for _, p := range processes {
 		processesCvt = append(processesCvt, &pb.Process{
-			Id: p.Id,
+			Id: uint64(p.ID),
 			Name: p.Name,
-			Description: p.Description,
-			Interval: p.Interval,
-			Command: p.Cmd,
+			Description: p.Description.String,
+			Interval: uint32(p.Interval),
+			Command: p.Command,
 		})
 	}
 

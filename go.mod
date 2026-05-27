@@ -3,6 +3,7 @@ module github.com/madhavan-raja/autorun
 go 1.25.0
 
 require (
+	github.com/mattn/go-sqlite3 v1.14.44
 	github.com/robfig/cron/v3 v3.0.1
 	google.golang.org/grpc v1.81.1
 	google.golang.org/protobuf v1.36.11

@@ -3,3 +3,6 @@ daemon:
 
 proto:
 	protoc --go_out=. --go-grpc_out=. proto/autorun.proto
+
+sqlc:
+	sqlc generate

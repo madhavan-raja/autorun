@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log/slog"
 	"net"
@@ -19,9 +20,11 @@ func init() {
 }
 
 func main() {
+	ctx := context.Background()
+
 	port := uint32(5678)
 
-	a := ardaemon.NewArDaemon()
+	a := ardaemon.NewArDaemon(ctx)
 
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
 	if err != nil {

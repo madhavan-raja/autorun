@@ -22,10 +22,16 @@ type ArDaemonServer struct {
 
 func (a *ArDaemonServer) List(ctx context.Context, req *pb.ListRequest) (*pb.ListResponse, error) {
 	logger.Info("Received List Request")
-	processes := []*pb.Process{}
 
-	for _, p := range a.ArDaemon.Jobs {
-		processes = append(processes, &pb.Process{
+	processes, err := a.ArDaemon.List(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	processesCvt := []*pb.Process{}
+
+	for _, p := range processes {
+		processesCvt = append(processesCvt, &pb.Process{
 			Id: p.Id,
 			Name: p.Name,
 			Description: p.Description,
@@ -34,13 +40,13 @@ func (a *ArDaemonServer) List(ctx context.Context, req *pb.ListRequest) (*pb.Lis
 		})
 	}
 
-	return &pb.ListResponse{Processes: processes}, nil
+	return &pb.ListResponse{Processes: processesCvt}, nil
 }
 
 func (a *ArDaemonServer) Add(ctx context.Context, req *pb.AddRequest) (*pb.AddResponse, error) {
 	logger.Info("Received Add Request", "req", req)
 
-	id, err := a.ArDaemon.Add(req.GetName(), req.GetDescription(), req.GetCommand(), req.GetInterval())
+	id, err := a.ArDaemon.Add(ctx, req.GetName(), req.GetDescription(), req.GetCommand(), req.GetInterval())
 	if err != nil {
 		return nil, err
 	}

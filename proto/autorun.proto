@@ -8,7 +8,7 @@ message Process {
   string name          = 2;
   string description   = 3;
   string command       = 4;
-  string cron_schedule = 5;
+  uint32 interval      = 5;
 }
 
 message ListRequest{}
@@ -21,7 +21,7 @@ message AddRequest {
   string name          = 1;
   string description   = 2;
   string command       = 3;
-  string cron_schedule = 4;
+  uint32 interval      = 4;
 }
 
 message AddResponse {
@@ -33,7 +33,7 @@ message UpdateRequest {
   string name          = 2;
   string description   = 3;
   string command       = 4;
-  string cron_schedule = 5;
+  uint32 interval      = 5;
 }
 
 message UpdateResponse {
@@ -41,7 +41,7 @@ message UpdateResponse {
   string name          = 2;
   string description   = 3;
   string command       = 4;
-  string cron_schedule = 5;
+  uint32 interval      = 5;
 }
 
 message DeleteRequest {

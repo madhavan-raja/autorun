@@ -1,6 +1,7 @@
 package ardaemon
 
 import (
+	"fmt"
 	"log/slog"
 	"sync"
 
@@ -19,6 +20,7 @@ type Process struct {
 	Name        string
 	Description string
 	Cmd         string
+	Interval    uint32
 	CronId      cron.EntryID
 }
 
@@ -38,7 +40,7 @@ func NewArDaemon() *ArDaemon {
 	}
 }
 
-func (a *ArDaemon) Add(name string, description string, cmd string, schedule string) (uint64, error) {
+func (a *ArDaemon) Add(name string, description string, cmd string, interval uint32) (uint64, error) {
 	a.mu.Lock()
 	defer a.mu.Unlock()
 
@@ -48,7 +50,7 @@ func (a *ArDaemon) Add(name string, description string, cmd string, schedule str
 	}
 	newId := maxId + 1
 
-	cronId, err := a.cron.AddFunc(schedule, func() { logger.Info("Executing Process", "process", name) })
+	cronId, err := a.cron.AddFunc(fmt.Sprintf("@every %ds", interval), func() { logger.Info("Executing Process", "process", name) })
 	if err != nil {
 		return 0, err
 	}
@@ -58,6 +60,7 @@ func (a *ArDaemon) Add(name string, description string, cmd string, schedule str
 		Name: name,
 		Description: description,
 		Cmd: cmd,
+		Interval: interval,
 		CronId: cronId,
 	}
 

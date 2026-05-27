@@ -27,7 +27,7 @@ type Process struct {
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 	Command       string                 `protobuf:"bytes,4,opt,name=command,proto3" json:"command,omitempty"`
-	CronSchedule  string                 `protobuf:"bytes,5,opt,name=cron_schedule,json=cronSchedule,proto3" json:"cron_schedule,omitempty"`
+	Interval      uint32                 `protobuf:"varint,5,opt,name=interval,proto3" json:"interval,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -90,11 +90,11 @@ func (x *Process) GetCommand() string {
 	return ""
 }
 
-func (x *Process) GetCronSchedule() string {
+func (x *Process) GetInterval() uint32 {
 	if x != nil {
-		return x.CronSchedule
+		return x.Interval
 	}
-	return ""
+	return 0
 }
 
 type ListRequest struct {
@@ -182,7 +182,7 @@ type AddRequest struct {
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Description   string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
 	Command       string                 `protobuf:"bytes,3,opt,name=command,proto3" json:"command,omitempty"`
-	CronSchedule  string                 `protobuf:"bytes,4,opt,name=cron_schedule,json=cronSchedule,proto3" json:"cron_schedule,omitempty"`
+	Interval      uint32                 `protobuf:"varint,4,opt,name=interval,proto3" json:"interval,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -238,11 +238,11 @@ func (x *AddRequest) GetCommand() string {
 	return ""
 }
 
-func (x *AddRequest) GetCronSchedule() string {
+func (x *AddRequest) GetInterval() uint32 {
 	if x != nil {
-		return x.CronSchedule
+		return x.Interval
 	}
-	return ""
+	return 0
 }
 
 type AddResponse struct {
@@ -295,7 +295,7 @@ type UpdateRequest struct {
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 	Command       string                 `protobuf:"bytes,4,opt,name=command,proto3" json:"command,omitempty"`
-	CronSchedule  string                 `protobuf:"bytes,5,opt,name=cron_schedule,json=cronSchedule,proto3" json:"cron_schedule,omitempty"`
+	Interval      uint32                 `protobuf:"varint,5,opt,name=interval,proto3" json:"interval,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -358,11 +358,11 @@ func (x *UpdateRequest) GetCommand() string {
 	return ""
 }
 
-func (x *UpdateRequest) GetCronSchedule() string {
+func (x *UpdateRequest) GetInterval() uint32 {
 	if x != nil {
-		return x.CronSchedule
+		return x.Interval
 	}
-	return ""
+	return 0
 }
 
 type UpdateResponse struct {
@@ -371,7 +371,7 @@ type UpdateResponse struct {
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 	Command       string                 `protobuf:"bytes,4,opt,name=command,proto3" json:"command,omitempty"`
-	CronSchedule  string                 `protobuf:"bytes,5,opt,name=cron_schedule,json=cronSchedule,proto3" json:"cron_schedule,omitempty"`
+	Interval      uint32                 `protobuf:"varint,5,opt,name=interval,proto3" json:"interval,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -434,11 +434,11 @@ func (x *UpdateResponse) GetCommand() string {
 	return ""
 }
 
-func (x *UpdateResponse) GetCronSchedule() string {
+func (x *UpdateResponse) GetInterval() uint32 {
 	if x != nil {
-		return x.CronSchedule
+		return x.Interval
 	}
-	return ""
+	return 0
 }
 
 type DeleteRequest struct {
@@ -621,36 +621,36 @@ var File_proto_autorun_proto protoreflect.FileDescriptor
 
 const file_proto_autorun_proto_rawDesc = "" +
 	"\n" +
-	"\x13proto/autorun.proto\x12\bardaemon\"\x8e\x01\n" +
+	"\x13proto/autorun.proto\x12\bardaemon\"\x85\x01\n" +
 	"\aProcess\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\x18\n" +
-	"\acommand\x18\x04 \x01(\tR\acommand\x12#\n" +
-	"\rcron_schedule\x18\x05 \x01(\tR\fcronSchedule\"\r\n" +
+	"\acommand\x18\x04 \x01(\tR\acommand\x12\x1a\n" +
+	"\binterval\x18\x05 \x01(\rR\binterval\"\r\n" +
 	"\vListRequest\"?\n" +
 	"\fListResponse\x12/\n" +
-	"\tprocesses\x18\x01 \x03(\v2\x11.ardaemon.ProcessR\tprocesses\"\x81\x01\n" +
+	"\tprocesses\x18\x01 \x03(\v2\x11.ardaemon.ProcessR\tprocesses\"x\n" +
 	"\n" +
 	"AddRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x18\n" +
-	"\acommand\x18\x03 \x01(\tR\acommand\x12#\n" +
-	"\rcron_schedule\x18\x04 \x01(\tR\fcronSchedule\"\x1d\n" +
+	"\acommand\x18\x03 \x01(\tR\acommand\x12\x1a\n" +
+	"\binterval\x18\x04 \x01(\rR\binterval\"\x1d\n" +
 	"\vAddResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x04R\x02id\"\x94\x01\n" +
+	"\x02id\x18\x01 \x01(\x04R\x02id\"\x8b\x01\n" +
 	"\rUpdateRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\x18\n" +
-	"\acommand\x18\x04 \x01(\tR\acommand\x12#\n" +
-	"\rcron_schedule\x18\x05 \x01(\tR\fcronSchedule\"\x95\x01\n" +
+	"\acommand\x18\x04 \x01(\tR\acommand\x12\x1a\n" +
+	"\binterval\x18\x05 \x01(\rR\binterval\"\x8c\x01\n" +
 	"\x0eUpdateResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12 \n" +
 	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\x18\n" +
-	"\acommand\x18\x04 \x01(\tR\acommand\x12#\n" +
-	"\rcron_schedule\x18\x05 \x01(\tR\fcronSchedule\"\x1f\n" +
+	"\acommand\x18\x04 \x01(\tR\acommand\x12\x1a\n" +
+	"\binterval\x18\x05 \x01(\rR\binterval\"\x1f\n" +
 	"\rDeleteRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x04R\x02id\" \n" +
 	"\x0eDeleteResponse\x12\x0e\n" +

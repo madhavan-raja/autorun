@@ -29,7 +29,7 @@ func (a *ArDaemonServer) List(ctx context.Context, req *pb.ListRequest) (*pb.Lis
 			Id: p.Id,
 			Name: p.Name,
 			Description: p.Description,
-			CronSchedule: "",
+			Interval: p.Interval,
 			Command: p.Cmd,
 		})
 	}
@@ -40,7 +40,7 @@ func (a *ArDaemonServer) List(ctx context.Context, req *pb.ListRequest) (*pb.Lis
 func (a *ArDaemonServer) Add(ctx context.Context, req *pb.AddRequest) (*pb.AddResponse, error) {
 	logger.Info("Received Add Request", "req", req)
 
-	id, err := a.ArDaemon.Add(req.Name, req.Description, req.Command, req.CronSchedule)
+	id, err := a.ArDaemon.Add(req.GetName(), req.GetDescription(), req.GetCommand(), req.GetInterval())
 	if err != nil {
 		return nil, err
 	}
